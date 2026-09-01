@@ -6,9 +6,10 @@ import { defineConfig } from 'vite';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const port = Number(process.env.PORT ?? 5173);
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'time-calculator';
 
 export default defineConfig({
-  base: './',
+  base: process.env.GITHUB_ACTIONS ? `/${repoName}/` : '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
