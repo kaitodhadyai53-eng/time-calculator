@@ -8,7 +8,7 @@ const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const port = Number(process.env.PORT ?? 5173);
 
 export default defineConfig({
-  base: '/',
+  base: './',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
