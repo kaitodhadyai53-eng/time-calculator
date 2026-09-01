@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --font-sans: var(--app-font-sans);
+  --font-mono: var(--app-font-mono);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --background: 39 36% 94%;
+  --foreground: 193 41% 16%;
+  --border: 39 21% 84%;
+  --input: 39 18% 78%;
+  --ring: 177 42% 38%;
+  --card: 40 40% 97%;
+  --card-foreground: 193 41% 16%;
+  --card-border: 39 21% 86%;
+  --primary: 190 57% 27%;
+  --primary-foreground: 39 36% 96%;
+  --secondary: 38 42% 88%;
+  --secondary-foreground: 193 41% 16%;
+  --muted: 38 27% 89%;
+  --muted-foreground: 193 16% 43%;
+  --accent: 25 72% 57%;
+  --accent-foreground: 193 41% 16%;
+  --destructive: 4 62% 48%;
+  --destructive-foreground: 39 36% 96%;
+  --app-font-sans: 'Noto Sans Thai', sans-serif;
+  --app-font-mono: 'IBM Plex Mono', monospace;
+  --radius: 1.125rem;
+  --shadow-sm: 0 3px 10px hsl(193 38% 19% / 0.06);
+  --shadow-md: 0 16px 34px hsl(193 38% 19% / 0.09);
+  --shadow-lg: 0 24px 60px hsl(193 38% 19% / 0.14);
+}
+
+.dark {
+  --background: 193 40% 11%;
+  --foreground: 39 36% 93%;
+  --border: 193 25% 24%;
+  --input: 193 25% 29%;
+  --ring: 25 72% 57%;
+  --card: 193 35% 15%;
+  --card-foreground: 39 36% 93%;
+  --card-border: 193 25% 24%;
+  --primary: 177 42% 48%;
+  --primary-foreground: 193 40% 11%;
+  --secondary: 193 25% 24%;
+  --secondary-foreground: 39 36% 93%;
+  --muted: 193 25% 21%;
+  --muted-foreground: 193 13% 67%;
+  --accent: 25 72% 57%;
+  --accent-foreground: 193 40% 11%;
+  --destructive: 4 62% 58%;
+  --destructive-foreground: 39 36% 93%;
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply antialiased bg-background text-foreground;
+    font-family: var(--app-font-sans);
+    min-width: 320px;
+  }
+  button, input { font: inherit; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes soft-pulse {
+  0%, 100% { opacity: .55; transform: scale(.96); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@keyframes result-in {
+  from { opacity: 0; transform: translateY(18px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.page-enter { animation: rise-in .65s cubic-bezier(.2,.75,.2,1) both; }
+.result-enter { animation: result-in .55s cubic-bezier(.2,.75,.2,1) both; }
+.pulse-dot { animation: soft-pulse 2.4s ease-in-out infinite; }
+
+.cafe-shell {
+  background:
+    radial-gradient(circle at 8% 8%, hsl(25 72% 57% / .10), transparent 26rem),
+    radial-gradient(circle at 92% 88%, hsl(177 42% 38% / .10), transparent 28rem),
+    hsl(var(--background));
+}
+.cafe-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .25;
+  background-image: radial-gradient(hsl(193 41% 16% / .08) .7px, transparent .7px);
+  background-size: 12px 12px;
+}
+.mono { font-family: var(--app-font-mono); }
+.field-ring:focus-within { box-shadow: 0 0 0 4px hsl(var(--ring) / .13); border-color: hsl(var(--ring)); }
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button { margin: 0; appearance: none; }
+.no-spinner { -moz-appearance: textfield; }
+.zone-option {
+  border-color: hsl(var(--border));
+  background: hsl(var(--background) / .45);
+  color: hsl(var(--muted-foreground));
+  transition: transform .18s ease, border-color .18s ease, background-color .18s ease, box-shadow .18s ease, color .18s ease;
+}
+.zone-option:hover {
+  transform: translateY(-1px);
+  border-color: hsl(var(--ring) / .7);
+  color: hsl(var(--foreground));
+  box-shadow: var(--shadow-sm);
+}
+.zone-option[data-selected='true'] {
+  border-color: hsl(var(--ring));
+  background: linear-gradient(145deg, hsl(var(--ring) / .12), hsl(var(--accent) / .08));
+  color: hsl(var(--foreground));
+  box-shadow: 0 7px 16px hsl(177 42% 38% / .09);
+}
+.zone-check {
+  border-color: hsl(var(--border));
+  color: transparent;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+.zone-option[data-selected='true'] .zone-check {
+  border-color: hsl(var(--ring));
+  background: hsl(var(--ring));
+  color: hsl(var(--primary-foreground));
+}
+.primary-button { transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease; }
+.primary-button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 20px hsl(190 57% 27% / .2); }
+.primary-button:active:not(:disabled) { transform: translateY(0); }
+.preset-button { transition: background-color .18s ease, border-color .18s ease, transform .18s ease; }
+.preset-button:hover { transform: translateY(-1px); border-color: hsl(var(--accent)); background: hsl(25 72% 57% / .08); }
+.empty-orbit {
+  background-image: radial-gradient(circle, hsl(39 36% 96% / .26) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
