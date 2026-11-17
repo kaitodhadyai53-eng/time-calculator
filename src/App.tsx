@@ -43,10 +43,10 @@ type PricingZone = {
 };
 
 const pricingZones: PricingZone[] = [
-  { id: 'machines-1-14', label: 'เครื่อง 1–14', promoRate: 20, regularRate: 25 },
-  { id: 'machines-15-19', label: 'เครื่อง 15–19', promoRate: 25, regularRate: 30 },
-  { id: 'machines-20-29', label: 'เครื่อง 20–29', promoRate: 15, regularRate: 18 },
-  { id: 'machines-30-40', label: 'เครื่อง 30–40', promoRate: 30, regularRate: 35 },
+  { id: 'machines 25 bath', label: 'เครื่อง 25/ชม.', promoRate: 20, regularRate: 25 },
+  { id: 'machines 30 bath', label: 'เครื่อง 30/ชม.', promoRate: 25, regularRate: 30 },
+  { id: 'machines 18 bath', label: 'เครื่อง 18/ชม.', promoRate: 15, regularRate: 18 },
+  { id: 'machines 35 bath', label: 'เครื่อง 35/ชม.', promoRate: 25, regularRate: 35 },
 ];
 
 function currentTime() {
